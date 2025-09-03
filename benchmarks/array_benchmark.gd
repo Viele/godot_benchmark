@@ -1,4 +1,4 @@
-class_name DictionaryBenchmark
+class_name ArrayBenchmark
 extends AbstractBenchmark
 
 
@@ -13,15 +13,15 @@ static func run() -> Array[BenchmarkResult]:
     time_result.name = "Dictionary Allocation Time"
     results.append(time_result)
 
-    print("DICT")
+    print("ARRAY")
     var size = 1
     while size < BenchmarkConstants.MAX_ITERABLE_LENGTH:
         var memory_start := int(Performance.get_monitor(Performance.MEMORY_STATIC))
         var time_start := Time.get_ticks_usec()
 
-        var test_dict := Dictionary()
+        var test_array := Array()
         for i in range(size):
-            test_dict[i] = i
+            test_array.append(i)
 
         var time_after := Time.get_ticks_usec()
         time_result.result[size] = time_after - time_start
