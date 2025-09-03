@@ -24,9 +24,10 @@ func _draw():
             # 0 - graph_size range
             var a: Vector2 = (result.data[i] / data_range.size) * graph_size
             var b: Vector2 = (result.data[i + 1] / data_range.size) * graph_size
+            # Inverting y because the positive y axis for drawing is pointing down.
             var a_fitted = graph_start + Vector2(a.x, -a.y)
             var b_fitted = graph_start + Vector2(b.x, -b.y)
-            draw_line(a_fitted, b_fitted, Color.BLACK)
+            draw_line(a_fitted, b_fitted, result.color, 1, true)
 
 
 func draw_results(results: Array[BenchmarkResult]) -> void:
