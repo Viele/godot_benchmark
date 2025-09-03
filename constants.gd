@@ -6,4 +6,4 @@ extends Object
 const ITERATIONS := 3
 
 ## To which size to test Dictionaries and Arrays.
-const MAX_ITERABLE_LENGTH := 1 << 12
+const MAX_ITERABLE_LENGTH := 1 << 13
