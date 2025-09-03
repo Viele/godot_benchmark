@@ -8,6 +8,6 @@ enum UnitType {
 }
 
 var name: String
-var result: PackedVector2Array
+var data: PackedVector2Array
 var x_unit: UnitType
 var y_unit: UnitType

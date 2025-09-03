@@ -4,10 +4,10 @@ var _results: Array[BenchmarkResult]
 
 
 func _ready():
-    item_selected.connect(_item_selected)
+    multi_selected.connect(_item_selected)
 
 
-func _item_selected(_index: int):
+func _item_selected(_index: int, _selected: bool):
     var selected_results: Array[BenchmarkResult] = []
     for index in get_selected_items():
         selected_results.append(_results[index])

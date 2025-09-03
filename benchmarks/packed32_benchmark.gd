@@ -13,7 +13,6 @@ static func run() -> Array[BenchmarkResult]:
     time_result.name = "PackedIn32 Allocation Time"
     results.append(time_result)
 
-    print("PACKED ARRAY")
     var size = 1
     while size < BenchmarkConstants.MAX_ITERABLE_LENGTH:
         var memory_start := int(Performance.get_monitor(Performance.MEMORY_STATIC))
@@ -24,15 +23,10 @@ static func run() -> Array[BenchmarkResult]:
             test_array.append(i)
 
         var time_after := Time.get_ticks_usec()
-        time_result.result.append(Vector2(size, time_after - time_start))
+        time_result.data.append(Vector2(size, time_after - time_start))
 
         var memory_bytes := int(Performance.get_monitor(Performance.MEMORY_STATIC)) - memory_start
-        memory_result.result.append(Vector2(size, memory_bytes))
-        @warning_ignore("integer_division")
-        var kb := memory_bytes / 1024
-
-        print("size: %d - mem: %dkB %dB" % [size, kb, memory_bytes - kb * 1024])
-        print("Allocation time: %dusec" % (time_after - time_start))
+        memory_result.data.append(Vector2(size, memory_bytes))
 
         size *= 2
 
