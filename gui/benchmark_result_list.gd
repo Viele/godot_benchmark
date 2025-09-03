@@ -18,4 +18,6 @@ func load(results: Array[BenchmarkResult]):
     _results = results
     clear()
     for result in results:
-        add_item(result.name)
+        var index = add_item(result.name)
+        set_item_custom_bg_color(index, result.color * 0.5)
+        set_item_custom_fg_color(index, Color.WHITE)

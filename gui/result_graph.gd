@@ -75,7 +75,7 @@ func _draw():
 			var b_fitted = graph_start + Vector2(b.x, -b.y)
 			draw_line(a_fitted, b_fitted, result.color, 1, true)
 
-		var label_pos: Vector2 = (result.data[-1] / scaled_range.size) * graph_size
+		var label_pos: Vector2 = (_scale_point(result.data[-1]) / scaled_range.size) * graph_size
 		var label_pos_fitted = graph_start + Vector2(label_pos.x, -label_pos.y)
 		text_size = _font.get_string_size(result.name, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
 		_draw_text(label_pos_fitted - Vector2(text_size.x, 0), result.name)
