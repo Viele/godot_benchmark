@@ -10,7 +10,7 @@ static func run() -> Array[BenchmarkResult]:
 	memory_result.name = "Dictionary Memory Usage"
 	results.append(memory_result)
 	memory_result.y_unit = BenchmarkResult.UnitType.MEMORY
-	memory_result.color = _BASE_COLOR * 0.9
+	memory_result.color = _BASE_COLOR
 
 	var time_result := BenchmarkResult.new()
 	time_result.name = "Dictionary Insert Time"
@@ -52,7 +52,7 @@ static func run() -> Array[BenchmarkResult]:
 		access_time_result.data.append(Vector2(size, time_after - access_time_start))
 
 		var search_time_start := Time.get_ticks_usec()
-		test_dict.get(size-1)
+		var _res = test_dict[size-1]
 		time_after = Time.get_ticks_usec()
 		search_time_result.data.append(Vector2(size, time_after - search_time_start))
 

@@ -18,7 +18,7 @@ static func unit_type_to_string(value: UnitType) -> String:
         UnitType.MEMORY:
             return "B"
         UnitType.TIME:
-            return "usec"
+            return "μs"
         UnitType.DATA_SIZE:
             return "#"
 

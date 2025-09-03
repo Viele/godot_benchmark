@@ -111,12 +111,10 @@ func _draw():
 
 	# Draw units
 	var x_unit_string = _get_unit_string_x(_results)
-	text_size = _font.get_string_size(x_unit_string, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
-	_draw_text(graph_start + Vector2(10, text_size.y + 2), x_unit_string)
+	_draw_unit_label_x(graph_start, x_unit_string)
 
 	var y_unit_string = _get_unit_string_y(_results)
-	text_size = _font.get_string_size(y_unit_string, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
-	_draw_text(graph_start + Vector2(-(text_size.x + 5), -(text_size.y)), y_unit_string)
+	_draw_unit_label_y(graph_start, y_unit_string)
 
 
 func draw_results(results: Array[BenchmarkResult]) -> void:

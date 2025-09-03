@@ -52,7 +52,7 @@ static func run() -> Array[BenchmarkResult]:
         access_time_result.data.append(Vector2(size, time_after - access_time_start))
 
         var search_time_start := Time.get_ticks_usec()
-        test_array.find(size-1)
+        var _idx = test_array.find(size-1)
         time_after = Time.get_ticks_usec()
         search_time_result.data.append(Vector2(size, time_after - search_time_start))
 
