@@ -24,10 +24,10 @@ static func run() -> Array[BenchmarkResult]:
             test_dict[i] = i
 
         var time_after := Time.get_ticks_usec()
-        time_result.result[size] = time_after - time_start
+        time_result.result.append(Vector2(size, time_after - time_start))
 
         var memory_bytes := int(Performance.get_monitor(Performance.MEMORY_STATIC)) - memory_start
-        memory_result.result[size] = memory_bytes
+        memory_result.result.append(Vector2(size, memory_bytes))
         @warning_ignore("integer_division")
         var kb := memory_bytes / 1024
 

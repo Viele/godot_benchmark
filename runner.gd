@@ -1,9 +1,10 @@
 extends Node
 
-var _results: Array[AbstractBenchmark]
 
 func _ready():
-	_results = []
+	var results: Array[BenchmarkResult] = []
 	for benchmark in BenchmarkRegistry.registry:
-		var results = benchmark.run()
-		_results.append_array(results)
+		var bench_results = benchmark.run()
+		results.append_array(bench_results)
+
+	$%result_list.load(results)
