@@ -10,8 +10,8 @@ const LABEL_SIZE := 12
 var _font = ThemeDB.fallback_font
 
 var _results: Array[BenchmarkResult]
-var _x_mode: ScaleMode = ScaleMode.LOG
-var _y_mode: ScaleMode = ScaleMode.LOG
+var _x_mode: ScaleMode = ScaleMode.LINEAR
+var _y_mode: ScaleMode = ScaleMode.LINEAR
 
 
 func _scale_point(p: Vector2) -> Vector2:
