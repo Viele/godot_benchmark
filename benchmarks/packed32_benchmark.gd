@@ -9,11 +9,11 @@ static func run() -> Array[BenchmarkResult]:
     var memory_result := BenchmarkResult.new()
     memory_result.name = "PackedIn32 Memory Usage"
     memory_result.y_unit = BenchmarkResult.UnitType.MEMORY
-    memory_result.color = _BASE_COLOR * 0.9
+    memory_result.color = _BASE_COLOR
     results.append(memory_result)
 
     var create_time_result := BenchmarkResult.new()
-    create_time_result.name = "PackedIn32 Allocation Time"
+    create_time_result.name = "PackedIn32 Append Time"
     create_time_result.y_unit = BenchmarkResult.UnitType.TIME
     create_time_result.color = _BASE_COLOR * Color(0.8, 0.8, 1)
     results.append(create_time_result)

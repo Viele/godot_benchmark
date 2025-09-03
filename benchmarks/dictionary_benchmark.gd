@@ -13,7 +13,7 @@ static func run() -> Array[BenchmarkResult]:
 	memory_result.color = _BASE_COLOR * 0.9
 
 	var time_result := BenchmarkResult.new()
-	time_result.name = "Dictionary Allocation Time"
+	time_result.name = "Dictionary Insert Time"
 	results.append(time_result)
 	time_result.y_unit = BenchmarkResult.UnitType.TIME
 	time_result.color = _BASE_COLOR * Color(0.8, 0.8, 1)
