@@ -7,10 +7,12 @@ static func run() -> Array[BenchmarkResult]:
 
     var memory_result := BenchmarkResult.new()
     memory_result.name = "Array Memory Usage"
+    memory_result.y_unit = BenchmarkResult.UnitType.MEMORY
     results.append(memory_result)
 
     var time_result := BenchmarkResult.new()
     time_result.name = "Array Allocation Time"
+    time_result.y_unit = BenchmarkResult.UnitType.TIME
     results.append(time_result)
 
     var size = 1

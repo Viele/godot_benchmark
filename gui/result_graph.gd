@@ -10,8 +10,8 @@ const LABEL_SIZE := 12
 var _font = ThemeDB.fallback_font
 
 var _results: Array[BenchmarkResult]
-var _x_mode: ScaleMode = ScaleMode.LINEAR
-var _y_mode: ScaleMode = ScaleMode.LINEAR
+var _x_mode: ScaleMode = ScaleMode.LOG
+var _y_mode: ScaleMode = ScaleMode.LOG
 
 
 func _scale_point(p: Vector2) -> Vector2:
@@ -44,7 +44,30 @@ func _draw_unit_label_x(pos: Vector2, text: String) -> void:
 
 func _draw_unit_label_y(pos: Vector2, text: String) -> void:
 	var text_size = _font.get_string_size(text, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
-	_draw_text(pos - Vector2(text_size.x + 8, -(text_size.y / 4)), text)
+	_draw_text(pos - Vector2(text_size.x + 8, - (text_size.y / 4)), text)
+
+
+func _units_to_string(units: Dictionary) -> String:
+	var unit_array = units.keys()
+	unit_array.sort()
+	var unit_strings: PackedStringArray = []
+	for u in unit_array:
+		unit_strings.append(BenchmarkResult.unit_type_to_string(u))
+	return ", ".join(unit_strings)
+
+
+func _get_unit_string_x(benchmark_results: Array[BenchmarkResult]) -> String:
+	var units = {}
+	for result in benchmark_results:
+		units[result.x_unit] = true
+	return _units_to_string(units)
+
+
+func _get_unit_string_y(benchmark_results: Array[BenchmarkResult]) -> String:
+	var units = {}
+	for result in benchmark_results:
+		units[result.y_unit] = true
+	return _units_to_string(units)
 
 
 func _draw():
@@ -52,14 +75,10 @@ func _draw():
 	var graph_size = size - pad * 2
 	var graph_start = pad + Vector2(0, graph_size.y)
 
-	var x_units = {}
-	var y_units = {}
 	# There should be a range per unit.
 	var scaled_range := Rect2()
 	var data_range := Rect2()
 	for result: BenchmarkResult in _results:
-		x_units[result.x_unit] = true
-		y_units[result.y_unit] = true
 		for datapoint: Vector2 in result.data:
 			scaled_range = scaled_range.expand(_scale_point(datapoint))
 			data_range = data_range.expand(datapoint)
@@ -91,15 +110,13 @@ func _draw():
 	_draw_unit_label_y(pad, str(data_range.size.y))
 
 	# Draw units
-	x_units = x_units.keys()
-	x_units.sort()
-	y_units = y_units.keys()
-	y_units.sort()
-	var x_unit_string = ""
-	for u in x_units:
-		x_unit_string += BenchmarkResult.unit_type_to_string(u) + " "
+	var x_unit_string = _get_unit_string_x(_results)
 	text_size = _font.get_string_size(x_unit_string, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
-	_draw_text(graph_start + Vector2(0, text_size.y + 2), x_unit_string)
+	_draw_text(graph_start + Vector2(10, text_size.y + 2), x_unit_string)
+
+	var y_unit_string = _get_unit_string_y(_results)
+	text_size = _font.get_string_size(y_unit_string, HORIZONTAL_ALIGNMENT_LEFT, -1, LABEL_SIZE)
+	_draw_text(graph_start + Vector2(-(text_size.x + 5), -(text_size.y)), y_unit_string)
 
 
 func draw_results(results: Array[BenchmarkResult]) -> void:
